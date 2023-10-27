@@ -4,9 +4,10 @@ import {CreateBookDto} from './interfaces/book.interface';
 import {BookDocument} from './schemas/book.schema';
 import {IParamId} from "./interfaces/param.id";
 import {UpdateBook} from "./interfaces/update.book";
-import {LoggingInterceptor} from "../app.logging.interceptor";
 
-@UseInterceptors(LoggingInterceptor)
+import {BookLoggingInterceptor} from "./book.logging.interceptor";
+
+@UseInterceptors(BookLoggingInterceptor)
 @Controller('books')
 export class BooksController {
     constructor(private readonly bookService: BooksService) {
