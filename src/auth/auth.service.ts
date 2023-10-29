@@ -24,6 +24,6 @@ export class AuthService{
     }
 
     createToken(payload:any){
-        return this.jwtService.sign(payload);
+        return this.jwtService.sign(payload,{ secret: process.env.SEKRET_KEY });
     }
 }

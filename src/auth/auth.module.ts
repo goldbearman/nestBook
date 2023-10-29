@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import {UsersModule} from "../users/users.module";
 import {PassportModule} from "@nestjs/passport";
 import {AuthService} from "./auth.service";
-import {LocalStrategy} from "./local.strategy";
+// import {LocalStrategy} from "./local.strategy";
 import {JwtModule} from "@nestjs/jwt";
 import {JwtStrategy} from "./jwt.strategy";
 
@@ -12,10 +12,11 @@ import {JwtStrategy} from "./jwt.strategy";
         PassportModule,
         JwtModule.register({
             secret: process.env.SEKRET_KEY,
-            signOptions:{expiresIn: '60s'}
+            signOptions:{expiresIn: '10s'}
         })
     ],
-    providers:[AuthService,LocalStrategy,JwtStrategy]
+    providers:[AuthService,JwtStrategy],
+    exports:[AuthService]
 
 })
 export class AuthModule {}
